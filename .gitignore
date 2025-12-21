@@ -1,0 +1,6 @@
+.env
+.motia/
+python_modules/
+__pycache__/
+*.log
+node_modules

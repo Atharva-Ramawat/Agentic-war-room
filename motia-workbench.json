@@ -1,0 +1,36 @@
+[
+  {
+    "id": "ai-war-room-flow",
+    "config": {
+      "src\\Steps\\js\\log-result.step.js": {
+        "x": 430,
+        "y": 48
+      },
+      "src\\Steps\\api\\analyze-api.step.ts": {
+        "x": -47,
+        "y": 6
+      },
+      "src\\Steps\\python\\analyze_step.py": {
+        "x": 178,
+        "y": 34
+      }
+    }
+  },
+  {
+    "id": "hello-world-flow",
+    "config": {
+      "src\\Steps\\log-greeting.step.js": {
+        "x": 794,
+        "y": 47
+      },
+      "src\\Steps\\hello-api.step.ts": {
+        "x": -18,
+        "y": -4
+      },
+      "src\\Steps\\process_greeting_step.py": {
+        "x": 355,
+        "y": 35
+      }
+    }
+  }
+]

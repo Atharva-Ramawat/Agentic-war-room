@@ -1,0 +1,141 @@
+--- AI WAR ROOM REPORT (GEMINI 2.5 FLASH) ---
+Request ID: unknown
+Topic: No headline provided
+------------------------------
+```
+/
+├── .github/                         # Continuous Integration/Continuous Deployment (CI/CD) workflows and automation
+│   └── workflows/
+│       ├── build_test.yml           # Workflow for building, testing, and linting
+│       ├── deploy_prod.yml          # Workflow for deploying to production environment
+│       └── security_scan.yml        # Workflow for running security checks and dependency scans
+│
+├── config/                          # Centralized configuration files for different modules and environments
+│   ├── app_config.yaml              # General application settings (e.g., environment variables, logging levels)
+│   ├── data_pipeline_config.yaml    # Configuration for data sources, pre-processing steps, batch sizes
+│   ├── inference_config.yaml        # Model paths, inference parameters, hardware targets
+│   ├── cache_config.yaml            # Caching strategy, TTLs, memory limits, secure key settings
+│   ├── security_config.yaml         # Security-related configurations (e.g., encryption keys paths, access control policies, audit log settings)
+│   └── logging_config.yaml          # Logging format, handlers, and destinations
+│
+├── data/                            # Data-related assets, schemas, and temporary storage
+│   ├── schemas/                     # Data schemas (e.g., Protobuf definitions for TFRecord, Avro schemas for Parquet)
+│   │   ├── input_schema.proto
+│   │   └── output_schema.proto
+│   ├── temp_ingestion/              # Temporary storage for raw or pre-fetched data (secured, encrypted)
+│   │   └── raw_data_buffer/
+│   ├── datasets/                    # Sample datasets or metadata for testing and development
+│   │   ├── training_samples.json
+│   │   └── validation_samples.tfrecord
+│   └── preprocessed_buffers/        # Temporary storage for pre-processed, batched data before inference
+│
+├── docs/                            # Project documentation, architectural decisions, and guidelines
+│   ├── architecture.md              # High-level system architecture, component interactions
+│   ├── setup.md                     # Environment setup instructions for developers
+│   ├── security_guidelines.md       # Best practices and policies for secure development and operations
+│   ├── performance_tuning.md        # Guidelines for optimizing performance and monitoring
+│   └── api_reference.md             # API documentation and endpoints
+│
+├── infra/                           # Infrastructure as Code (IaC) definitions for deployment and provisioning
+│   ├── cloud/                       # Cloud-specific deployments (e.g., GCP, AWS, Azure)
+│   │   ├── gcp/
+│   │   │   ├── main.tf              # Terraform main configuration for GCP resources
+│   │   │   └── modules/             # Reusable Terraform modules (e.g., VPC, Compute Instance, Cloud Storage)
+│   │   └── aws/
+│   ├── kubernetes/                  # Kubernetes manifests for container orchestration
+│   │   ├── deployment.yaml          # Kubernetes Deployment for the application
+│   │   ├── service.yaml             # Kubernetes Service for exposing the application
+│   │   └── ingress.yaml             # Ingress controller configuration
+│   ├── monitoring/                  # Configurations for monitoring and logging tools (e.g., Prometheus, Grafana, ELK stack)
+│   │   ├── prometheus.yml
+│   │   └── grafana_dashboards/
+│   └── secrets/                     # Secure management of sensitive information (e.g., KMS/Vault configurations)
+│
+├── models/                          # Stored model artifacts and related configurations
+│   ├── raw/                         # Original, unoptimized base models (e.g., FP32)
+│   │   └── gemini_2_5_base/
+│   │       └── model.pb             # Example: TensorFlow SavedModel or ONNX format
+│   ├── quantized/                   # Quantized model versions (e.g., INT8, FP16)
+│   │   └── gemini_2_5_int8/
+│   │       └── model.pb
+│   ├── compiled/                    # Models optimized by compilers (e.g., XLA compiled graphs, TensorRT engines)
+│   │   └── gemini_2_5_xla/
+│   │       └── compiled_graph.pb
+│   ├── versions/                    # Versioning for different model iterations and experiments
+│   │   ├── v1.0.0/
+│   │   └── v1.1.0/
+│   └── optimization_configs/        # Configuration files for quantization, XLA, pruning, etc.
+│       ├── quantization_strategy.yaml
+│       └── xla_compiler_options.json
+│
+├── scripts/                         # Utility scripts for various operational and development tasks
+│   ├── setup/                       # Environment setup scripts (e.g., install dependencies, configure environment)
+│   │   └── install_deps.sh
+│   ├── data_prep/                   # Scripts for data preparation, conversion to optimized formats (e.g., TFRecord)
+│   │   └── convert_to_tfrecord.py
+│   ├── model_ops/                   # Scripts for model quantization, compilation, deployment, and version management
+│   │   ├── quantize_model.py
+│   │   └── deploy_model.sh
+│   ├── security_audits/             # Scripts for security scanning, dependency vulnerability checks, configuration audits
+│   │   └── run_dependency_scan.sh
+│   └── performance_tests/           # Scripts for running performance benchmarks, load tests, and profiling
+│       └── run_load_test.py
+│
+├── src/                             # Source code of the application
+│   ├── api/                         # API endpoints and request handling layer (e.g., FastAPI, Flask)
+│   │   ├── v1/
+│   │   │   ├── inference_router.py  # Defines API routes for inference requests
+│   │   │   └── schemas.py           # Pydantic models for request/response validation
+│   │   └── main.py                  # API application entry point
+│   ├── data_pipeline/               # Components for data ingestion, pre-processing, and batching
+│   │   ├── ingestion/               # Raw data intake, source connectors, asynchronous loading
+│   │   │   └── async_data_loader.py # Implements pre-fetching and efficient I/O
+│   │   ├── preprocessors/           # Data cleaning, feature engineering, tokenization, serialization
+│   │   │   └── text_preprocessor.py # Handles text normalization, tokenization for LLM
+│   │   ├── batching/                # Logic for creating optimized batches for model inference
+│   │   │   └── batch_manager.py     # Manages batch creation and flow to inference engine
+│   │   └── formats/                 # Handlers for optimized data formats (TFRecord, Parquet, custom binary)
+│   │       └── tfrecord_parser.py   # Efficient parsing of TFRecord data
+│   ├── inference_engine/            # Core logic for model loading, inference execution, and optimization application
+│   │   ├── model_loader.py          # Loads models (raw, quantized, compiled) based on configuration
+│   │   ├── predictor.py             # Executes inference, applies pre/post-processing, manages model sessions
+│   │   └── optimizers/              # Logic for applying runtime optimizations (quantization, XLA, etc.)
+│   │       └── runtime_optimizer.py # Integrates XLA, ONNX Runtime, or other inference compilers
+│   ├── caching/                     # Intelligent caching layer implementation
+│   │   ├── cache_manager.py         # Main cache orchestration, interaction with storage
+│   │   ├── strategies/              # Cache eviction/invalidation strategies (e.g., LRU, LFU, time-based)
+│   │   │   └── lru_cache_strategy.py
+│   │   └── secure_cache_utils.py    # Utilities for secure cache key generation, validation, integrity checks (mitigating cache poisoning)
+│   ├── concurrency/                 # Modules for managing parallel execution and asynchronous operations
+│   │   ├── thread_pool_executor.py  # For I/O-bound tasks and non-blocking operations
+│   │   └── process_manager.py       # For CPU-bound pre-processing or parallel model instances
+│   ├── security/                    # Security-related modules and utilities
+│   │   ├── access_control.py        # Role-based access control (RBAC) or attribute-based access control (ABAC)
+│   │   ├── encryption_utils.py      # Data encryption/decryption for sensitive data paths (in-transit, at-rest)
+│   │   ├── integrity_checker.py     # Data integrity checks for pipeline stages and cache entries
+│   │   └── vulnerability_scanner_integration.py # Integration with dependency vulnerability scanners (e.g., Snyk, Trivy)
+│   ├── utils/                       # Common utilities, helpers, custom exceptions, logging setup
+│   │   ├── logger.py                # Centralized logging utility
+│   │   └── error_handler.py         # Custom exception handling and error reporting
+│   └── main.py                      # Application entry point, initializes core services and API
+│
+├── tests/                           # Comprehensive test suite for the project
+│   ├── unit/                        # Unit tests for individual functions and classes
+│   │   ├── test_data_pipeline.py
+│   │   ├── test_inference_engine.py
+│   │   └── test_caching.py
+│   ├── integration/                 # Integration tests for interactions between modules and external services
+│   │   └── test_api_integration.py
+│   ├── performance/                 # Performance benchmarks, load tests, and profiling
+│   │   ├── test_throughput.py       # Measures requests per second
+│   │   └── test_latency.py          # Measures response times
+│   └── security/                    # Security tests (e.g., penetration tests, fuzzing, cache poisoning scenarios, side-channel detection)
+│       ├── test_cache_poisoning.py  # Tests for cache vulnerabilities
+│       └── test_access_control.py   # Tests for proper authorization
+│
+├── .dockerignore                    # Files and directories to exclude from Docker image builds
+├── Dockerfile                       # Dockerfile for containerizing the application
+├── README.md                        # Project README with setup instructions, overview, and usage
+├── requirements.txt                 # Python dependencies (for pip)
+└── pyproject.toml                   # (Optional) For poetry/flit/setuptools based projects (modern Python packaging)
+```

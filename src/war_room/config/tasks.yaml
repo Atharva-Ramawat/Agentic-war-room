@@ -1,0 +1,20 @@
+analyze_risk_task:
+  description: >
+    Analyze the {headline} and provide a list of the top 3 security or strategic risks.
+  expected_output: >
+    A bulleted list of 3 high-level risks.
+  agent: hawk
+
+analyze_human_task:
+  description: >
+    Review the risks found and explain how they affect regular people.
+  expected_output: >
+    A summary of human impact.
+  agent: dove
+
+analyze_tech_task:
+  description: >
+    Provide a final technical recommendation on how to optimize the system for this headline.
+  expected_output: >
+    A final technical report with optimization steps.
+  agent: techie
