@@ -5,10 +5,7 @@ export default defineConfig({
 
   python: {
     executable: 'python'
-    // Windows:
-    // executable: '../venv/Scripts/python.exe'
-    // macOS/Linux:
-    // executable: '../venv/bin/python'
+    
   },
 
   logging: {
