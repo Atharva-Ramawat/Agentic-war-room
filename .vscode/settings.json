@@ -1,4 +1,4 @@
 {
   "python.analysis.extraPaths": ["./src"],
-  "python.defaultInterpreterPath": "./python_modules/Scripts/python.exe"
+  "python.defaultInterpreterPath": "./python_modules/Scripts/python.ex3"
 }
