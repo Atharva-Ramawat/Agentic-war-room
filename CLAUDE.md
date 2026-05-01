@@ -16,7 +16,7 @@ The `motia-developer` subagent in `.claude/agents/` automatically references all
 
 Use it: `/agents` → select `motia-developer`
 
-Learn more: [Claude Code Subagents Docs](https://docs.claude.com/en/docs/claude-code/sub-agents)
+Learn more: [Claude Code Subagents Docs](https://docs.claude.com/en/docs/claude-code/sub-agents
 
 ### For Claude AI Assistant (Chat)
 
