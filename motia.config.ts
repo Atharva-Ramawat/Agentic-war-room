@@ -9,6 +9,6 @@ export default defineConfig({
   },
 
   logging: {
-    level: 'info
+    level: 'info'
   }
 });
